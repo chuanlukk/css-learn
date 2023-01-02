@@ -1,0 +1,110 @@
+/* 全局设置border-box */
+:root {
+    box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+    box-sizing: inherit;
+}
+
+/* 全局字体与背景色 */
+body {
+    background-color: #ddd;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+/* 设置全局外边框 */
+body * + * {
+    margin-top: 1.5em;
+}
+
+.container {
+    max-width: 980px;
+    /* 左右外边距设置为auto，能让内层容器自动填充可用空间，从而实现水平居中的效果 */
+    margin: 0 auto;
+}
+
+/* 头部的颜色和内边距 */
+header {
+    /* 设置内边距，让水平位置合适，垂直位置居中 */
+    padding: 1em 1.5em;
+    color: #fff;
+    background-color: #0072b0;
+    border-radius: .5em;
+    /* margin-bottom: 1.5em; */
+}
+
+.main {
+    /* 设置一个合适的左右内边距 */
+    padding: 0 1.5em;
+    /* 白色的主容器 */
+    background-color: #fff;
+    border-radius: .5em;
+}
+
+img {
+    width: 10em;
+}
+
+.media {
+    float: left;
+    /* 让main中水平方向上能放两个媒体盒子 */
+    width: calc(50% - 1.5em);
+    margin: 0 1.5em 1.5em 0;
+    padding: 1.5em;
+    /* margin-top: 0; */
+    background-color: #eee;
+    border-radius: .5em;
+
+}
+
+/* 折叠了外边距的版本 */
+
+/* .clearfix::after { */
+    /* 设成非inline */
+    /* display: block; */
+    /* 给一个content值，以便伪元素出现在文档中 */
+    /* content: " "; */
+    /* 让伪元素清楚容器内所有浮动 */
+    /* 注意给包含浮动的元素清除浮动，而不是给别的元素，比如浮动元素本身 */
+    /* clear: both; */
+/* } */
+
+/* 包含外边框 */
+.clearfix::before,
+.clearfix::after {
+    /* 防止为元素的外边距折叠 */
+    display: table;
+    content: "";
+}
+
+.clearfix::after {
+    clear: both;
+}
+
+.media:nth-child(odd) {
+    /* nth-child(odd)的左边不允许有浮动元素存在 */
+    clear: left;
+}
+
+.media-image {
+    float: left;
+    margin-right: 1.5em;
+}
+
+
+.media-body {
+    /* 创建一个新的BFC，这样正文就不会跟浮动图片重叠 */
+    overflow: auto;
+    /* 删除猫头鹰选择器所添加的顶部外边距 */
+    margin-top: 0;
+}
+
+/* 覆盖用户代理样式所添加的顶部外边距 */
+.media-body h4 {
+    margin-top: 0;
+}
+
+/* 网格系统查阅书籍 */

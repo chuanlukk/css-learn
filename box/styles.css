@@ -1,0 +1,119 @@
+:root {
+    box-sizing: border-box;
+}
+
+/* 如下代码，可以在必要时选中第三方组件的顶级容器，
+将其恢复为content-box */
+/* .third-party-component {
+    box-sizing: content-box;
+} */
+
+
+/* 用通用选择器（*）选中了页面上所有元素，
+并用两个选择器选中了网页的所有伪元素。 */
+/* 盒模型通常不会被继承，
+但是使用inherit关键字可以强制继承 */
+*,
+::before,
+::after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: #eee;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+header {
+    padding: 1em 1.5em;
+    /* overflow: auto; */
+    color: #fff;;
+    background-color: #0072b0;
+    border-radius: .5em;
+}
+
+
+
+main {
+    /* 修复IE的BUG */
+    display: block;
+}
+
+
+
+
+/* 等高布局 */
+/* .wrapper {
+    margin-left: -1.5em;
+    margin-right: -1.5em;
+}
+
+.container {
+    display: table;
+    width: 100%;
+    border-spacing: 1.5em 0;
+}
+
+.main {
+    display: table-cell;
+    width: 70%;
+    background-color: #fff;
+    border-radius: .5em;
+}
+
+.sidebar {
+    display: table-cell;
+    width: 30%;
+    padding: 1.5em;
+    background-color: #fff;
+    border-radius: .5em;
+} */
+
+
+body * + * {
+    margin-top: 1.5em;
+
+}
+
+.container {
+    display: flex;
+}
+/* 弹性容器内的元素不需要指定display或者float属性 */
+.main {
+    width: 70%;
+    padding: 1em 1.5em;
+    background-color: #fff;
+    border-radius: .5em;
+}
+
+.sidebar {
+    width: 30%;
+    padding: 1.5em;
+    /* 移除猫头鹰选择器设置的顶部外边距 */
+    margin-top: 0;
+    margin-left: 1.5em;
+    background-color: #fff;
+    border-radius: .5em;
+}
+
+.button-link {
+    /* 设置块级元素，占据一行 */
+    display: block;
+    padding: .5em;
+    color: #fff;
+    background-color: #0090c9;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+/* 只给紧跟在其他button-link后面的button-link加上顶部外边距 */
+/* .button-link + .button-link {
+    margin-top: 1.5em;
+} */
+
+.sponser-link {
+    display: block;
+    color: #0072b0;
+    font-weight: bold;
+    text-decoration: none;
+}

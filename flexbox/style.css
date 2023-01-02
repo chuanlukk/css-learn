@@ -1,0 +1,168 @@
+/* 全局box-sizing设置 */
+
+:root {
+    box-sizing: border-box;
+}
+
+*,
+::before,
+::after {
+    box-sizing: inherit;
+}
+
+/* 背景与字体 */
+body {
+    background-color: #709b90;
+    font-family:'Times New Roman', Times, serif;
+}
+
+/* 全局外边距 */
+body * + * {
+    margin-top: 1.5em;
+}
+
+/* 双容器模式，方便网页内容居中 */
+.container {
+    max-width: 880px;
+    margin: 0 auto;
+}
+
+/* 以上为框架性代码 */
+
+.site-nav {
+    display: flex;
+    /* 去掉浏览器默认的左侧内边距 */
+    /* padding-left: 0; */
+    /* 内边距 */
+    padding: .5em;
+    /* 去掉浏览器默认的项目列表符号 */
+    list-style-type: none;
+    background-color: #5f4b44;
+    border-radius: .3em;
+}
+
+.site-nav > li {
+    /* 覆盖猫头鹰选择器的顶部外边距 */
+    margin-top: 0;
+}
+
+.site-nav > li > a {
+    /* 让链接成为块级元素!这样就能撑开父元素的高度 */
+    display: block;
+    padding: .5em 1em;
+    background-color: #cc6b5a;
+    color: white;
+    text-decoration: none;
+}
+
+/* 除了第一项，给列表项夹左边距 */
+.site-nav > li + li {
+    margin-left: 1.5em;
+}
+
+/* 弹性盒子内的auto外边距会填充所有可用空间 */
+.site-nav > .nav-right {
+    margin-left: auto;
+}
+
+.tile {
+    padding: 1.5em;
+    background-color: #fff;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex > * + * {
+    /* 去掉顶部外边距 */
+    margin-top: 0;
+    /* 给每个弹性子元素之间加上间隔 */
+    margin-left: 1.5em;
+}
+
+.column-main {
+    /* 等价于flex: 1 1 66.67% */
+    flex: 66.76%;
+    /* 等价于flex: 2 1 0% */
+    /* flex: 2; */
+}
+
+.column-sidebar {
+    flex: 33.33%;
+    /* 把侧边栏设为弹性容器 */
+    display: flex;
+    /* 改变弹性方向 */
+    flex-direction: column;
+}
+
+.column-sidebar > .tile {
+    /* 给内部子元素加上flex-grow */
+    flex: 1;
+}
+
+/* 登录标题 */
+.login-form h3 {
+    margin: 0;
+    font-size: .9em;
+    font-weight: bold;
+    text-align: right;
+    text-transform: uppercase;
+}
+
+/* 给文本类型的输入框添加样式 */
+/* 不包含复选框和单选按钮 */
+.login-form input:not([type=checkbox]):not([type=radio]) {
+    display: block;
+    width: 100%;
+    /* 消除猫头鹰上外边距 */
+    margin-top: 0;
+}
+
+.login-form button {
+    margin-top: 1em;
+    border: 1px solid #cc6b5a;
+    background-color: #fff;
+    padding: .5em 1em;
+    cursor: pointer;
+}
+
+.centered {
+    text-align: center;
+}
+
+.cost {
+    display: flex;
+    /* 主轴上位置居中 */
+    justify-content: center;
+    /* 负轴上位置居中 */
+    align-items: center;
+    line-height: .7;
+}
+
+/* 消除猫头鹰选择器上外边距效果 */
+.cost > span {
+    margin-top: 0;
+}
+
+/* 给价格的各个部分设置不同的字号 */
+.cost-currency {
+    font-size: 2rem;
+}
+.cost-dollars {
+    font-size: 4rem;
+}
+.cost-cents {
+    font-size: 1.5rem;
+    /* 覆盖这个子元素的align-items */
+    /* 讲其与容器顶部而不是中间对齐 */
+    align-self: flex-start;
+}
+
+.cta-button {
+    display: block;
+    background-color: #cc6b5a;
+    color: white;
+    padding: .5em 1em;
+    text-decoration: none;
+}
