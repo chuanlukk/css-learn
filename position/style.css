@@ -1,0 +1,186 @@
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    min-height: 200vh;
+    margin: 0;
+}
+
+button {
+    padding: 0.5em 0.7em;
+    border: 1px solid #8d8d8d;
+    background-color: #fff;
+    font-size: 1em;
+}
+
+.top-banner {
+    padding: 1em 0;
+    background-color: #ffd698;
+}
+
+.top-banner-inner {
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* 默认隐藏 */
+.modal {
+    display: none;
+}
+
+.modal-backdrop {
+    position: fixed;
+    /* 遮挡视口所有内容 */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* 0.5半透明 */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* 解决定位元素层叠顺序问题 */
+    z-index: 1;
+}
+
+.modal-body {
+    position: fixed;
+    top: 3em;
+    bottom: 3em;
+    right: 20%;
+    left: 20%;
+    padding: 2em 3em;
+    background-color: #fff;
+    /* 允许模态框主体在需要时滚动 */
+    overflow: auto;
+    /* 解决定位元素层叠顺序问题 */
+    z-index: 2;
+}
+
+.modal-close {
+    position: absolute;
+    top: 0.3em;
+    right: 0.3em;
+    padding: 0.3em;
+    /* display: block; */
+    cursor: pointer;
+    /* margin-left: auto; */
+    font-size: 2em;
+    /* 把按钮变成一个小正方形 */
+    height: 1em;
+    width: 1em;
+    /* 让元素里的文字溢出并隐藏 */
+    text-indent: 10em;
+    overflow: hidden;
+    border: 1;
+}
+
+.modal-close::after {
+    position: inherit;
+    line-height: 0.5;
+    top: 0.22em;
+    left: 0.15em;
+    text-indent: 0;
+    content: "\00D7";
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    max-width: 800px;
+    margin: 1em auto;
+    /* 子元素是粘元素时，不会超出父元素的范围 */
+    /* 如果滚动地足够远（到达父元素的底边），那粘性元素还是会恢复滚动 */
+    min-height: 100vh;
+}
+
+.dropdown {
+    display: inline-block;
+    /* 为的是创建包含快 */
+    position: relative;
+}
+
+.dropdown-label {
+    /* 又内边距多一点，给绝对定位的三角形留出空间 */
+    padding: .5em 2em .5em 1.5em;
+    border: 1px solid #ccc;
+    background-color: #eee;
+}
+
+.dropdown-menu {
+    display: none;
+    /* 绝对定位，当下拉菜单出现时不影响其他元素 */
+    position: absolute;
+    left: 0;
+    top: 2.1em;
+    min-width: 100%;
+    background-color: #eee;
+}
+/* 鼠标悬停时显示菜单 */
+/* 注意这里是整个容器 */
+/* 无论鼠标悬停在dropdown-label还是dropdown-menu，菜单都会保持打开 */
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+
+.submenu {
+    padding-left: 0;
+    margin: 0;
+    list-style-type: none;
+    /* 此处有一个不明原因的bug */
+    /* border: 1px solid #999; */
+    border-right: 10px solid ;
+    border-left: 5px solid blue;
+    border-top: 10px solid red;
+    border-bottom:10px solid #3fffff;
+}
+
+.submenu > li + li {
+    border-top: 1px solid #999;
+    /* padding: 1em; */
+    /* li的默认内边距为0 */
+}
+
+.submenu > li > a {
+    /* block才能撑起外面的容器 */
+    display: block;
+    padding: .5em 1.5em;
+    background-color: #eee;
+    color: #369;
+    text-decoration: none;
+}
+
+.submenu > li > a:hover {
+    background-color: #fff;
+}
+
+/* CSS三角形 */
+.dropdown-label::after {
+    /* 没有内容，所以没有宽高 */
+    content: "";
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    /* 用上边框做一个向下的箭头 */
+    border: 0.3em solid;
+    border-color: black transparent transparent;
+}
+/* 鼠标悬停时，箭头向上 */
+.dropdown:hover .dropdown-label::after {
+    top: .7em;
+    border-color: transparent transparent black;
+}
+
+/* 层叠上下文有关内容记得查书 */
+
+/* 给两栏布局 */
+.col-main {
+    flex: 1 80%;
+}
+
+.col-sidebar {
+    flex: 20%;
+}
+
+/* 粘滞定位，它会停在距离视口顶部1em的位置 */
+.affix {
+    position: sticky;
+    top: 1em;
+}
