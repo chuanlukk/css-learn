@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="top-banner">
+        <div class="top-banner-inner">
+            <p>
+                Find out what's going on at Wombat Coffee each
+                month. Sign up for newletter:
+                <button id="open">Sign up</button>
+            </p>
+        </div>
+    </header>
+    <!-- 模态框容器 -->
+    <div class="modal" id="modal">
+        <!-- 模态框后遮挡网页内容的“蒙层” -->
+        <div class="modal-backdrop"></div>
+        <!-- 模态框内容 -->
+        <div class="modal-body">
+            <button class="modal-close" id="close">close</button>
+            <h2>Wombat Newsletter</h2>
+            <p>
+                Sign up for our monthly newsletter. No spam. 
+                We promise!
+            </p>
+            <form action="">
+                <p>
+                    <label for="email">Email address:</label>
+                    <input type="text" name="email" id="" />
+                </p>
+                <p><button type="submit">Submit</button></p>
+            </form>
+        </div>
+    </div>
+    <!-- 下拉菜单 -->
+    <div class="container">
+        <!-- 主体栏 -->
+        <main class="col-main">
+            <nav>
+                <!-- 下拉菜单容器 -->
+                <div class="dropdown">
+                    <div class="dropdown-label">Main Menu</div>
+                    <div class="dropdown-menu">
+                        <ul class="submenu">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/coffees">Coffees</a></li>
+                            <li><a href="/brewers">Brewers</a></li>
+                            <li><a href="/specials">Specials</a></li>
+                            <li><a href="/about">About us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <h1>Wombat Coffee Roasters</h1>
+        </main>
+
+        <!-- 侧边栏 -->
+        <aside class="col-sidebar">
+            <div class="affix">
+                <ui class="submenu">
+                    <li><a href="/">Home</a></li>
+                    <!-- <li><a href="/coffees">Coffees</a></li> -->
+                    <!-- <li><a href="/brewers">Brewers</a></li> -->
+                    <!-- <li><a href="/specials">Specials</a></li> -->
+                    <!-- <li><a href="/about">About us</a></li> -->
+                </ui>
+            </div>
+        </aside>
+    </div>
+    <script src="event.js"></script>
+</body>
+</html>
