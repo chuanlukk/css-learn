@@ -17,7 +17,7 @@
 #### 第四部分：高级话题
 - [ ] chapter-11: 背景、阴影和混合模式
 - [x] chapter-12: 对比、颜色和间距
-- [ ] chapter-13: 排版
+- [x] chapter-13: 排版
 - [ ] chapter-14: 过渡
 - [ ] chapter-15: 变换
 - [ ] chapter-16: 动画
