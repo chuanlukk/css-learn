@@ -1,0 +1,168 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body > * + * {
+    margin-top: 1.5rem;
+}
+
+
+button {
+    display: block;
+    background-color: hsl(180, 50%, 50%);
+    border: 0;
+    color: white;
+    /* 可知按钮上字体大小默认不是1rem */
+    font-size: 1rem;
+    padding: .3em 1em;
+    /* 所有属性变化都使用过渡效果 */
+    transition-property: all;
+    /* 过渡时间设置 */
+    transition-duration: 0.5s;
+}
+/* hover时改变属性，从而促成过度效果 */
+/* 元素属性任何时候发生变化都会触发过渡，
+   比如状态改变、js导致变化、添加或移除
+*/
+button:hover {
+    /* 悬停状态为带圆角的红色按钮 */
+    background-color: hsl(0, 50%, 50%);
+    /* color: blue; */
+    /* border-radius: 1em; */
+}
+
+.feature {
+    /* 过渡的简写形式 */
+    /* 参数一：过渡属性 */
+    /* 参数二：过渡时间，0不是一个有效值，0s或0ms才有效 */
+    /* 参数三：定时函数 */
+    /* 参数四：延迟时间 */
+    /* transition: color 0.5s linear 2s; */
+    /* 如果想要设置多个属性值 */
+    transition-property: border-radius, background-color;
+    transition-duration: 4s, 0.6s;
+    transition-timing-function: ease-in, linear;
+}
+
+.container {
+    position: relative;
+    height: 30px;
+}
+.box {
+    position: absolute;
+    left: 0;
+    /* 因为没有内容，所以必须手动设置一个宽高 */
+    /* 如果有内容,则自适应内容的大小 */
+    height: 30px;
+    width: 30px;
+    background-color: hsl(130, 50%, 50%);
+    /* 定时函数是基于数学定义的贝塞尔曲线 */
+    /* transition: all 1s linear; */
+    transition: all 3s ease-in;
+    transition: all 3s ease-out;
+    transition: all 5s ease-in-out;
+    transition: all 5s cubic-bezier(0, 2.84, 1, 4.58);
+    transition: all 5s steps(3);
+    transition: all 5s steps(3, start);
+}
+/* 容器鼠标悬停状态时，盒子右移400px */
+.container:hover .box {
+    left: 400px;
+}
+
+/* 淡入与淡出效果 */
+/* 先实现菜单的打开和关闭，再添加过渡效果 */
+.dropdown__toggle {
+    display: block;
+    padding: .5em 1em;
+    border: 1px solid hsl(280, 10%, 80%);
+    color: hsl(280, 30%, 60%);
+    background-color: white;
+    font: inherit;
+    text-decoration: none;
+    /* 应用过渡效果到背景色属性 */
+    /* toggle的过渡效果 */
+    transition: background-color 0.2s linear;
+}
+.dropdown__toggle:hover {
+    /* 悬停状态时，背景色变深 */
+    background-color: hsl(280, 15%, 95%);
+}
+.dropdown__drawer {
+    position: absolute;
+    display: none;
+    /* 方便观察设为gray，原为white */
+    background-color: gray;
+    width: 10em;
+}
+/* toggle被点击后，dropdown的子元素dropdown__drawer */
+.dropdown.is-open .dropdown__drawer {
+    /* 显示 */
+    display: block;
+}
+
+.menu {
+    padding-left: 0;
+    margin: 0;
+    list-style: none;
+}
+.menu > li + li > a {
+    border-top: 0;
+}
+.menu > li > a {
+    display: block;
+    padding: .5em 1em;
+    color: hsl(280, 40%, 60%);
+    background-color: white;
+    text-decoration: none;
+    /* 每个按钮的过渡效果 */
+    transition: all .2s linear;
+    border: 1px solid hsl(280, 10%, 80%);
+}
+.menu > li > a:hover {
+    background-color: hsl(280, 15%, 95%);
+    color: hsl(280, 25%, 10%);
+}
+
+/* 添加透明度的过渡规则 */
+.dropdown__drawer.transition-a {
+    /* 使用opacity: 0替换display: none */
+    display: block;
+    opacity: 0;
+    /* 不同于display: none属性， */
+    /* visibility属性支持过渡的transition-delay */
+    /* 此外visibility: hidden不会让元素从文档流中消失 */
+    /* visibility: hidden时，用户点击下方连接可以不受阻 */
+    visibility: hidden;
+    /* 为透明度应用过渡效果 */
+    transition: opacity 0.2s linear,
+                visibility 0s linear 0.2s;
+                /* 为可见性添加0.2s的延迟，正好是不透明度过渡效果的结束 */
+    /* 以上为淡出效果（点击toggle后不再有.is_open类）， */
+    /* 此时drawer先执行opacity的过渡，0.2s后再执行visibility: hidden */
+}
+/* 以下实现淡入效果（菜单未出现时点击toggle，产生is_open类） */
+.dropdown.is-open .dropdown__drawer.transition-a{
+    /* 设置延迟为0s，先立即执行visibility: visible，让drawer可见 */
+    /* 再执行opacity从0（透明）到1（不透明）的过渡 */
+    transition-delay: 0s;
+    /* 使用opacity: 1替换display: block */
+    opacity: 1;
+    visibility: visible;
+}
+
+.dropdown__drawer.transition-h {
+    display: block;
+    height: 0;
+    /* 设置overflow:hidden是为了在关闭或者过渡过程中截断抽屉的内容 */
+    overflow: hidden;
+    /* 对高度属性应用过渡 */
+    transition: height 0.3s ease-out;
+}
+.dropdown.is-open .dropdown__drawer.transition-h {
+    /* 设置height为auto，过渡将不会起作用 */
+    height: auto;
+    /* 必须要一个明确的值，但问题是没法知道高度是多少 */
+    /* 因为只有当内容在浏览器中渲染完成之后才能确定高度， */
+    /* 所以需要使用js来获取 */
+}

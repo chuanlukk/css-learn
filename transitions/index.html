@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button>Hover over me</button>
+    <button class="feature">Hover over feature</button>
+    <div class="container">
+        <div class="box">aaa</div>
+    </div>
+    <!-- 下拉菜单模块，淡入淡出过渡 -->
+    <div class="dropdown">
+        <!-- 切换按钮 -->
+        <button class="dropdown__toggle">Menu</button>
+        <!-- 抽屉 -->
+        <div class="dropdown__drawer transition-a">
+            <ul class="menu">
+                <li><a href="/features">Features</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/features">Features</a></li>
+            </ul>
+        </div>
+    </div>
+    <p><a href="/README.md">Read more</a></p>
+
+    <!-- 下拉菜单模块，高度过渡 -->
+    <div class="dropdown">
+        <!-- 切换按钮 -->
+        <button class="dropdown__toggle">Menu</button>
+        <!-- 抽屉 -->
+        <div class="dropdown__drawer transition-h">
+            <ul class="menu">
+                <li><a href="/features">Features</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/features">Features</a></li>
+                <li><a href="/features">Features</a></li>
+            </ul>
+        </div>
+    </div>
+    <p><a href="/README.md">Read more</a></p>
+    <script src="mycode.js"></script>
+</body>
+</html>
