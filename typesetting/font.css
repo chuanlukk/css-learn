@@ -1,0 +1,19 @@
+/* 也可以直接使用font-display属性设置FOIT与FOUT */
+@font-face {
+    font-family: "Some font";
+    font-style: normal;
+    font-weight: 300;
+    src: local("Some font"), local("Some-font"),
+         url(https://example.com/somefont/woff2) format(woff2),
+         url(https://example.com/somefont/woff) format(woff);
+    font-display: swap;
+}
+/*font-display的几种属性
+auto-默认行为（大多数浏览器中是FOIT）
+swap-显示回退字体，再web字体准备好后进行交换（swap）
+fallback-介于auto与swap之间。文本会保持较短时间（100ms）的隐藏状态，
+         如果这之后web字体还没有准备好，就显示回退字体，
+         接下来一旦web字体加载完成，就会显示web字体
+optional-类似于fallback，但允许浏览器基于网速判断是否显示web字体。
+         这意味着在较慢连接条件下、在超时较长条件下，web字体可能不再显示了
+*/
