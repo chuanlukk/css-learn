@@ -1,0 +1,346 @@
+/* 基础样式与标题样式 */
+html {
+    box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: hsl(200, 80%, 30%);
+    /* 深色背景渐变，径向渐变 */
+    background-image: radial-gradient(hsl(200, 80%, 30%),
+                                        hsl(210, 80%, 20%));
+    color: white;
+    font-family: Raleway, Arial, Helvetica, sans-serif;
+    line-height: 1.4;
+    /* 确保body元素填满整个视窗 */
+    /* 这样渐变就会填满屏幕 */
+    margin: 0;
+    min-height: 100vh;
+}
+
+h1, h2, h3 {
+    font-family: Alfa Slab One, serif;
+    font-weight: 400;
+}
+
+main {
+    display: block;
+}
+
+img {
+    max-width: 100%;
+}
+
+.page-header {
+    /* 消除用户代理样式 */
+    margin: 0;
+    padding: 1rem;
+}
+/* 在较大的屏幕上为头部设置较大的内边距 */
+@media (min-width: 30em) {
+    .page-header {
+        padding: 2rem 2rem 3rem;
+    }
+}
+
+
+/* 菜单样式设计 */
+/* 移动优先 */
+.nav-links {
+    /* (li为块级元素) */
+    display: flex;
+    justify-content: space-between;
+    /* 消除用户代理样式 */
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+    list-style: none;
+}
+.nav-links > li + li {
+    margin-left: 0.8em;
+}
+.nav-links > li > a {
+    color: white;
+    display: block;
+    padding: 0.8em 0;
+    /* 为链接文本添加样式 */
+    font-size: 0.8rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.nav-links__icon {
+    height: 1.5em;
+    width: 1.5em;
+    /* 把图标向下稍微移动，以便于文本标签对齐 */
+    vertical-align: -0.3em;
+}
+.nav-links > li > a:hover {
+    /* 设置一种明亮的颜色 */
+    color: hsl(40, 100%, 70%);
+}
+/* 在较大的屏幕上 */
+@media (min-width: 30em){
+    .main-nav {
+        /* 确保导航显示在网页后续新增内容的前面 */
+        position: fixed;
+        top: 8.25rem;
+        left: 0;
+        z-index: 10;
+        /* 开始时保持透明 */
+        background-color: transparent;
+        /* 对背景色属性使用线性过渡 */
+        transition: backgound-color .5s linear;
+        /* 右上于右下圆角 */
+        border-top-right-radius: 0.5em;
+        border-bottom-right-radius: 0.5em;
+    }
+    
+    /* 覆盖移动样式中的Flexbox */
+    .nav-links {
+        display: block;
+        padding: 1em;
+        margin-bottom: 0;
+    }
+    .nav-links > li + li {
+        margin-left: 0;
+    }
+    .nav-links__label {
+        /* 把标签设为行内块级元素，这样就可以对其使用变换了 */
+        display: inline-block;
+        margin-left: .6em;
+        padding-right: 1em;
+        /* 开始时隐藏标签 */
+        opacity: 0;
+        transform: translate(-1em);
+        /* 为要改变的属性添加过渡 */
+        transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.3),
+                    opacity 0.4s linear;
+    }
+    .nav-links:hover .nav-links__label,
+    .nav-links a:focus > .nav-links__label {
+        opacity: 1;
+        /* 移回正确位置 */
+        transform: translate(0);
+    }
+    /* 交错显示过渡 */
+    .nav-links > li:nth-child(2) .nav-links__label {
+        transition-delay: 0.1s;
+    }
+    .nav-links > li:nth-child(3) .nav-links__label {
+        transition-delay: 0.2s;
+    }
+    .nav-links > li:nth-child(4) .nav-links__label {
+        transition-delay: 0.3s;
+    }
+    /* focus时没有延迟 */
+    .nav-links a:focus > .nav-links__label {
+        transition-delay: 0s;
+    }
+    
+
+    /* 为图标的transform属性添加过渡 */
+    .nav-links__icon{
+        transition: transform 0.2s ease-out;
+    }
+    /* 使用transform增大图标尺寸 */
+    .nav-links a:hover > .nav-links__icon,
+    .nav-links a:focus > .nav-links__icon{
+        transform: scale(1.3);
+    }
+}
+
+.main-nav:hover {
+    /* 深色半透明 */
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+
+/* 卡片样式 */
+/* 移动优先 */
+.flyin-grid {
+    margin: 0 1rem;
+}
+
+.card {
+    margin-bottom: 1em;
+    padding: .5em;
+    background-color: white;
+    color: hsl(210, 15%, 20%);
+    box-shadow: .2em .5em 1em rgba(0, 0, 0, 0.3);
+}
+.card > img {
+    width: 100%;
+}
+
+/* 响应式布局 */
+/* 基于Flexbox的回退布局 */
+@media (min-width : 30em) {
+    .flyin-grid {
+        /* 建立允许折行的弹性容器 */
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 5rem;
+    }
+
+    .flyin-grid__item {
+        flex: 1 1 300px;
+        /* 为左右设置外边距 */
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+        max-width: 600px;
+    }
+
+    /* 特性查询 */
+    /* 对支持网格布局的浏览器添加网格布局 */
+    /* 覆盖先前的Flexbox */
+    @supports (display: grid) {
+        .flyin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 2em;
+        }
+
+        .flyin-grid__item {
+            margin: 0;
+            /* 如果屏幕足够大，就能以原始大小呈现图片 */
+            max-width: initial;
+        }
+    }
+}
+
+
+/* 页面的设计与布局工作完成 */
+/* 动画效果 */
+.flyin-grid {
+    /* 在容器上共享的透视距离 */
+    perspective: 500px;
+}
+
+/* 为每个元素添加动画 */
+.flyin-grid__item {
+    animation: fly-in 600ms ease-in;
+    /* 处理动画开始前的闪动 */
+    /* 在动画开始之前应用第一帧上的动画样式 */
+    animation-fill-mode: backwards;
+}
+.flyin-grid__item:nth-child(2) {
+    animation-delay: 0.1s;
+}
+.flyin-grid__item:nth-child(3) {
+    animation-delay: 0.2s;
+}
+.flyin-grid__item:nth-child(4) {
+    animation-delay: 0.3s;
+}
+.flyin-grid__item:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+@keyframes fly-in {
+    /* 0%时刻，以旋转后的状态从远处开始 */
+    0% {
+        transform: translateZ(-800px) rotateY(90deg);
+        opacity: 0;
+    }
+    /* 56%时刻，已经很近了，但几乎还是旋转状态 */
+    56% {
+        transform: translateZ(-160px) rotateY(87deg);
+        opacity: 1;
+    }
+    /* 100%时刻——结束时刻，回到正常位置 */
+    100% {
+        transform: translateZ(0) rotateY(0);
+    }
+}
+
+/* 补充：表单提交按钮动画 */
+form {
+    margin: 3em auto;
+    max-width: 500px;
+}
+
+label,
+textarea {
+    width: 100%;
+    font-size: inherit;
+}
+
+button {
+    padding: .6em 1em;
+    /* 消除用户代理的边框样式 */
+    border: 0;
+    background-color: hsl(220, 50%, 80%);
+    font: inherit;
+    transition: background-color 0.3s linear;
+}
+button:hover {
+    background-color: hsl(220, 40%, 60%);
+}
+button.is-loading {
+    position: relative;
+    /* 隐藏文字 */
+    color: transparent;
+}
+button.is-loading::after {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 1.4em;
+    height: 1.4em;
+    /* 把伪元素定位到按钮中心 */
+    top: 50%;
+    left: 50%;
+    margin-left: -0.7em;
+    margin-top: -0.7em;
+    /* 边框实现月牙 */
+    border-top: 2px solid hsl(210, 15%, 20%);
+    border-radius: 50%;
+    animation: spin 0.5s linear 0.5s infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 吸引用户注意力，提醒保存 */
+/* 该动画效果通用性强 */
+.shake {
+    animation: shake 0.7s linear;
+}
+@keyframes shake {
+    /* 动画执行期间 */
+    /* 再多个位置使用相同的关键帧定义 */
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70% {
+        transform: translateX(-0.4em);
+    }
+    20%,
+    40%,
+    60% {
+        transform: translateX(0.4em);
+    }
+    /* 最后一次摇晃的时候降低幅度 */
+    80% {
+        transform: translateX(0.3em);
+    }
+    90% {
+        transform: translateX(-0.3em);
+    }
+    
+}
