@@ -20,4 +20,4 @@
 - [x] chapter-13: 排版
 - [x] chapter-14: 过渡
 - [x] chapter-15: 变换
-- [ ] chapter-16: 动画
+- [x] chapter-16: 动画
